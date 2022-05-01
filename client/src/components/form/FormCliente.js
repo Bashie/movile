@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { crearCliente, updateCliente, borrarCliente, getClientes } from '../../_actions/clientes';
-import { useSelector, useDispatch } from 'react-redux';
+import { crearCliente, updateCliente, borrarCliente } from '../../_actions/clientes';
+import { useSelector } from 'react-redux';
 
-export default function FormCliente({ getId, setId }) {
+export default function FormCliente({ getId, setId, dispatch }) {
 	const { register, handleSubmit, reset, setValue } = useForm();
 	const cliente = useSelector(state => state.clientes.find((cliente) => cliente._id === getId ? cliente : null));
-	const dispatch = useDispatch()
 	useEffect(() => {
 		if (getId !== 0) {
 			let keys = Object.keys(cliente);
@@ -25,9 +24,9 @@ export default function FormCliente({ getId, setId }) {
 	}
 	const borrar = (id) => {
 		dispatch(borrarCliente(id));
-		dispatch(getClientes());
+		reset()
+		setId(0)
 	}
-
 	return (
 		<>
 			<form onSubmit={handleSubmit(onSubmit)}>
@@ -41,7 +40,6 @@ export default function FormCliente({ getId, setId }) {
 					<input type="text" name="dni" placeholder="DNI" {...register('dni')} />
 				</div>
 				<button type="submit">Guardar</button>
-				<button onClick={() => { setId(getId) }}>Update</button>
 				<button onClick={() => { borrar(getId) }}>Borrar</button>
 			</form>
 		</>
