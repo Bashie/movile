@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { crearCliente, updateCliente } from '../../_actions/clientes';
+import { crearCliente, updateCliente, borrarCliente, getClientes } from '../../_actions/clientes';
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function FormCliente({ getId, setId }) {
@@ -23,11 +23,16 @@ export default function FormCliente({ getId, setId }) {
 			setId(0)
 		}
 	}
+	const borrar = (id) => {
+		dispatch(borrarCliente(id));
+		dispatch(getClientes());
+	}
+
 	return (
 		<>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div>
-					<input type="text" name="nombre" placeholder="Nombre" {...register('nombre')}  />
+					<input type="text" name="nombre" placeholder="Nombre" {...register('nombre')} />
 				</div>
 				<div>
 					<input type="text" name="apellido" placeholder="Apellido" {...register('apellido')} />
@@ -36,6 +41,8 @@ export default function FormCliente({ getId, setId }) {
 					<input type="text" name="dni" placeholder="DNI" {...register('dni')} />
 				</div>
 				<button type="submit">Guardar</button>
+				<button onClick={() => { setId(getId) }}>Update</button>
+				<button onClick={() => { borrar(getId) }}>Borrar</button>
 			</form>
 		</>
 	)

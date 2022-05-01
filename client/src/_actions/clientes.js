@@ -5,7 +5,7 @@ export const crearCliente = (cliente) => async (dispatch) => {
 	dispatch({ type: 'POST', payload: data });
 }
 
-export const getClientes = (setClientes) => async (dispatch) => {
+export const getClientes = () => async (dispatch) => {
 	const { data } = await api.getClientes();
 	dispatch({ type: 'GET', payload: data })
 }
