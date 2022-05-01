@@ -8,12 +8,12 @@ function App() {
 	const dispatch = useDispatch();
 	const [id, setId] = useState(0);
 	useEffect(() => {
-		dispatch(getClientes);
+		dispatch(getClientes());
 	}, [dispatch])
 	return (
 		<>
-			<FormCliente setId={setId} getId={id}/>
-			<Clientes setId={setId}/>
+			<FormCliente setId={setId} getId={id} />
+			<Clientes setId={setId} />
 		</>
 	);
 }

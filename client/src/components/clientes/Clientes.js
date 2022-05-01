@@ -7,6 +7,7 @@ dayjs.extend(relativeTime);
 
 export default function Clientes({setId}) {
     const clientes = useSelector(state => state.clientes)
+console.log(clientes)
     return (
         <>
             {clientes.map(cliente => {
