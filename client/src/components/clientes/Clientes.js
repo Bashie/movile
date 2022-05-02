@@ -17,7 +17,7 @@ export default function Clientes({ setId }) {
 			<select onChange={clienteSeleccionado}>
 				<option value="" />
 				{clientes.map(cliente => {
-					return <option key={cliente._id} value={cliente._id}>{cliente.apellido}, {cliente.nombre}</option>;
+					return <option key={cliente._id} value={cliente._id}>{cliente.apellido}, {cliente.nombre} ({cliente.nickname})</option>;
 				})}
 			</select>
 		</>
