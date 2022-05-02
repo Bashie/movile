@@ -37,7 +37,7 @@ function App() {
 					Pedidos:
 				<br />
 					<br />
-					<FormPedido setId={setPedidoId} getId={pedidoId} dispatch={dispatch} />
+					<FormPedido setId={setPedidoId} getId={pedidoId} dispatch={dispatch} className="smallLogin"/>
 					<br />
 					<div className="smallLogin">
 						<Pedidos setPedidoId={setPedidoId} />

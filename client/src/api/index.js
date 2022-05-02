@@ -1,6 +1,6 @@
 import axios from 'axios';
-const url = 'http://localhost:8000/clientes';
-const urlPedido = 'http://localhost:8000/pedidos';
+const url = 'https://optimum-door-349012.uc.r.appspot.com/clientes';
+const urlPedido = 'https://optimum-door-349012.uc.r.appspot.com/pedidos';
 export const crearCliente = (cliente) => axios.post(url, cliente);
 export const getClientes = () => axios.get(url);
 export const updateCliente = (id, cliente) => axios.patch(`${url}/${id}`, cliente);
