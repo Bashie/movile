@@ -14,8 +14,10 @@ export default function FormPedido({ getId, setId, dispatch }) {
 	}, [getId, pedido, setValue])
 	const onSubmit = (data) => {
 		if (getId === 0) {
-			dispatch(crearPedido(data))
-			reset()
+			if (data.dni) {
+				dispatch(crearPedido(data))
+				reset()
+			}
 		} else {
 			dispatch(updatePedido(getId, data))
 			reset()

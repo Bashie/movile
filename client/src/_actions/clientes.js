@@ -12,10 +12,10 @@ export const getClientes = () => async (dispatch) => {
 
 export const updateCliente = (id, cliente) => async (dispatch) => {
 	const { data } = await api.updateCliente(id, cliente);
-	dispatch({ type: 'UPDATE', payload: id })
+	dispatch({ type: 'UPDATE', payload: data })
 }
 
 export const borrarCliente = (id) => async (dispatch) => {
 	const { data } = await api.borrarCliente(id);
-	dispatch({ type: 'DELETE', payload: data });
+	dispatch({ type: 'DELETE', payload: id });
 }

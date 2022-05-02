@@ -14,8 +14,10 @@ export default function FormCliente({ getId, setId, dispatch }) {
 	}, [getId, cliente, setValue])
 	const onSubmit = (data) => {
 		if (getId === 0) {
-			dispatch(crearCliente(data))
-			reset()
+			if (data.nombre) {
+				dispatch(crearCliente(data))
+				reset()
+			}
 		} else {
 			dispatch(updateCliente(getId, data))
 			reset()
@@ -24,8 +26,8 @@ export default function FormCliente({ getId, setId, dispatch }) {
 	}
 	const borrar = (id) => {
 		dispatch(borrarCliente(id));
-		reset()
 		setId(0)
+		reset()
 	}
 	return (
 		<>
