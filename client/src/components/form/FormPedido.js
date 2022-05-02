@@ -40,7 +40,7 @@ export default function FormPedido({ getId, setId, dispatch }) {
 					<select {...register('dni')} className="smallLogindrop">
 						<option value="" />
 						{clientes.map(cliente => {
-							return <option key={cliente._id} value={cliente.nombre} >{cliente.apellido}, {cliente.nombre}</option>;
+							return <option key={cliente._id} value={cliente.nickname} >{cliente.nickname}</option>;
 						})}
 					</select>
 				</div>
