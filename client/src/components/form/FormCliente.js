@@ -41,6 +41,7 @@ export default function FormCliente({ getId, setId, dispatch }) {
 				<div>
 					<input type="text" name="dni" placeholder="DNI" {...register('dni')} />
 				</div>
+				<br />
 				<button type="submit">Guardar</button>
 				<button onClick={() => { borrar(getId) }}>Borrar</button>
 			</form>

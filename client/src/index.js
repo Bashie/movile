@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import Thunk from 'redux-thunk';
 import reducer from './_reducers/index';
+
 const store = createStore(reducer, compose(applyMiddleware(Thunk)))
 
 const startApp = () => {

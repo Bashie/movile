@@ -7,6 +7,7 @@ import FormPedido from './components/form/FormPedido';
 import Pedidos from './components/pedidos/Pedidos';
 import { getPedidos } from './_actions/pedidos';
 
+
 function App() {
 	const dispatch = useDispatch();
 	const [id, setId] = useState(0);
@@ -15,16 +16,33 @@ function App() {
 		dispatch(getClientes());
 		dispatch(getPedidos());
 	}, [dispatch])
-	
+
 	return (
 		<>
-			<div>
-			<FormCliente setId={setId} getId={id} dispatch={dispatch} />
-			<Clientes setId={setId} />
+			<div className="titlePage">
+				Pedidos Starbucks
 			</div>
-			<div>
-			<FormPedido setId={setPedidoId} getId={pedidoId} dispatch={dispatch} />
-			<Pedidos setPedidoId={setPedidoId} />
+			<div className="fullContainer">
+				<div className="fullLogin">
+					Clientes:
+				<br />
+					<br />
+					<FormCliente setId={setId} getId={id} dispatch={dispatch} />
+					<br />
+					<div className="smallLogin">
+						<Clientes setId={setId} />
+					</div>
+				</div>
+				<div className="fullLogin">
+					Pedidos:
+				<br />
+					<br />
+					<FormPedido setId={setPedidoId} getId={pedidoId} dispatch={dispatch} />
+					<br />
+					<div className="smallLogin">
+						<Pedidos setPedidoId={setPedidoId} />
+					</div>
+				</div>
 			</div>
 		</>
 	);

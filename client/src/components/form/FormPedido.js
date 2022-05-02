@@ -38,6 +38,7 @@ export default function FormPedido({ getId, setId, dispatch }) {
 				<div>
 					<input type="text" name="items" placeholder="Items" {...register('items')} />
 				</div>
+				<br />
 				<button type="submit">Guardar</button>
 				<button onClick={() => { borrar(getId) }}>Borrar</button>
 			</form>
