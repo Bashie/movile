@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 const pedidoSchema = new mongoose.Schema({
-	"dni": String,
-	"items": String
+	"cliente": [
+		{ type: mongoose.Schema.Types.ObjectId, ref: 'cliente' }
+	],
+	"items": [{type: mongoose.Schema.Types.ObjectId, ref:'producto'}],
+	"estado": String
 }, { timestamps: true });
 const Pedido = mongoose.model('pedido', pedidoSchema);
 export default Pedido;
