@@ -6,6 +6,7 @@ import { getClientes } from './_actions/clientes';
 import FormPedido from './components/form/FormPedido';
 import Pedidos from './components/pedidos/Pedidos';
 import { getPedidos } from './_actions/pedidos';
+import { getProductos } from './_actions/productos';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 	useEffect(() => {
 		dispatch(getClientes());
 		dispatch(getPedidos());
+		dispatch(getProductos());
 	}, [dispatch])
 
 	return (

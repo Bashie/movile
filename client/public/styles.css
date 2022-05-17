@@ -79,7 +79,6 @@ html, body {
 	font-size: 150%;
 	width: 75%;
 	font-family: "Lucida Console", "Courier New", monospace;
-	display: flex;
 	flex-direction: row;
 }
 

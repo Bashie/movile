@@ -45,6 +45,11 @@ html, body {
 	padding-left: 13%;
 	text-align: center;
 }
+.smallLogindrop {
+	flex-direction: column;
+	background-color: white;
+	width: 74%;
+}
 
 .fullTable {
 	height: 90%;
@@ -74,7 +79,6 @@ html, body {
 	font-size: 150%;
 	width: 75%;
 	font-family: "Lucida Console", "Courier New", monospace;
-	display: flex;
 	flex-direction: row;
 }
 
