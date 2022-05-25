@@ -12,7 +12,7 @@ export default function Pedido({ marcarEntregado, pedido }) {
 	return (
 		<>
 			<div>
-				<p>{Moment(pedido.createdAt).format('MMMM d')}</p>
+				<p>{Moment(pedido.createdAt).format('MMMM DD')}</p>
 				<p>{pedido.productos.map(id => {
 					return productos.reduce((resultado, producto) => resultado += (id === producto._id) ? producto.nombre + ", " : "" , "")
 				})}</p>

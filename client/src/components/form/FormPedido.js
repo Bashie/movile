@@ -14,20 +14,28 @@ export default function FormPedido({ getId, setId, dispatch }) {
 			keys.forEach((key) => setValue(key, pedido[key]))
 		}
 	}, [getId, pedido, setValue])
+	let stock = true;
 	const onSubmit = (data) => {
-		console.log(data)
-		if (getId === 0) {
-			if (data.cliente) {
-				dispatch(crearPedido(data))
-				const ps = [];
-				data.productos.forEach(id => {productos.find(producto =>  {if(id === producto._id) {producto.stock--; dispatch(updateProducto(producto._id, producto))}})})
+		stock = true;
+		data.productos.forEach(id => { productos.find(producto => { if (id === producto._id) { if (producto.stock -1 < 0) { cancelar(producto); } } }) })
+		if (stock) {
+			if (getId === 0) {
+				if (data.cliente) {
+					dispatch(crearPedido(data))
+					const ps = [];
+					data.productos.forEach(id => { productos.find(producto => { if (id === producto._id) { producto.stock--; dispatch(updateProducto(producto._id, producto)) } }) })
+					reset()
+				}
+			} else {
+				dispatch(updatePedido(getId, data))
 				reset()
+				setId(0)
 			}
-		} else {
-			dispatch(updatePedido(getId, data))
-			reset()
-			setId(0)
 		}
+	}
+	const cancelar = (producto) => {
+		stock = false;
+		alert("No hay suficiente " + producto.nombre);
 	}
 	const borrar = (id) => {
 		dispatch(borrarPedido(id));
@@ -48,14 +56,16 @@ export default function FormPedido({ getId, setId, dispatch }) {
 						})}
 					</select>
 				</div>
+				<br/>
 				<div>
 					<select multiple={true} className="smallLogindrop" {...register('productos')}>
 						{productos.map(producto => {
-							return <option key={producto._id} value={producto._id} >{producto.nombre} ({producto.stock})</option>;
+							return <option key={producto._id} value={producto._id} >{producto.nombre} (Stock: {producto.stock})</option>;
 						})}
 					</select>
 					<input type="hidden" name="estado" value="NUEVO" {...register('estado')} />
 				</div>
+				<br/>
 				<button type="submit">Guardar</button>
 			</form>
 		</>
