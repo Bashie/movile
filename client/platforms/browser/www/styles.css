@@ -171,6 +171,11 @@ html, body {
 	border: none;
 }
 
+.productos {
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-size: 10px;
+}
+
 .formik-dropdown-is-invalid {
 	width: 100%;
 	display: block;

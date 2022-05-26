@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { crearPedido, updatePedido, borrarPedido } from '../../_actions/pedidos';
 import { updateProducto } from '../../_actions/productos';
 import { useSelector } from 'react-redux';
+import PedidoItem from '../pedidos/PedidoItem';
 
 export default function FormPedido({ getId, setId, dispatch }) {
 	const { register, handleSubmit, reset, setValue } = useForm();
@@ -17,13 +18,14 @@ export default function FormPedido({ getId, setId, dispatch }) {
 	let stock = true;
 	const onSubmit = (data) => {
 		stock = true;
-		data.productos.forEach(id => { productos.find(producto => { if (id === producto._id) { if (producto.stock -1 < 0) { cancelar(producto); } } }) })
+		data.productos = pedidoItems;
+		data.productos.forEach(p => { productos.find(producto => { if (p.producto === producto._id) { if (producto.stock - p.cantidad < 0) { cancelar(producto); } } }) })
 		if (stock) {
 			if (getId === 0) {
 				if (data.cliente) {
 					dispatch(crearPedido(data))
 					const ps = [];
-					data.productos.forEach(id => { productos.find(producto => { if (id === producto._id) { producto.stock--; dispatch(updateProducto(producto._id, producto)) } }) })
+					data.productos.forEach(p => { productos.find(producto => { if (p.producto === producto._id && p.cantidad > 0) { producto.stock=producto.stock-p.cantidad; dispatch(updateProducto(producto._id, producto)) } }) })
 					reset()
 				}
 			} else {
@@ -44,11 +46,16 @@ export default function FormPedido({ getId, setId, dispatch }) {
 	}
 	const clientes = useSelector(state => state.clientes)
 	const productos = useSelector(state => state.productos)
+	const pedidoItems = useSelector(state => state.productos.map(producto => {return {producto:producto._id, cantidad:"0"}}));
+	const actualizarPedido = (e, index) => {
+		pedidoItems[index].cantidad = e.target.value;
+	};
+
 	return (
 		<>
 			<form onSubmit={handleSubmit(onSubmit)} >
-
 				<div>
+					<div className="productos">Seleccione Cliente:</div>
 					<select {...register('cliente')} className="smallLogindrop">
 						<option value="" />
 						{clientes.map(cliente => {
@@ -56,16 +63,14 @@ export default function FormPedido({ getId, setId, dispatch }) {
 						})}
 					</select>
 				</div>
-				<br/>
-				<div>
-					<select multiple={true} className="smallLogindrop" {...register('productos')}>
-						{productos.map(producto => {
-							return <option key={producto._id} value={producto._id} >{producto.nombre} (Stock: {producto.stock})</option>;
-						})}
-					</select>
+				<br />
+				<div className="productos">
+					{productos.map((producto, i) => {
+						return <PedidoItem producto={producto} key={producto._id} actualizarPedido={e => {actualizarPedido(e, i);}}/>;
+					})}
 					<input type="hidden" name="estado" value="NUEVO" {...register('estado')} />
 				</div>
-				<br/>
+				<br />
 				<button type="submit">Guardar</button>
 			</form>
 		</>

@@ -16,7 +16,7 @@ html, body {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	width:300px;
+	width:400px;
 }
 .container {
 	padding: 0px;
@@ -51,6 +51,28 @@ html, body {
 	width: 74%;
 }
 
+.productos {
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-size: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.productoItem {
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-size: 10px;
+	display: flex;
+	flex-direction: row;
+}
+
+.productoItemDerecha {
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-size: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end
+}
+.filler{flex-grow:1; text-align:center}
 .fullTable {
 	height: 90%;
 	padding: 1%;

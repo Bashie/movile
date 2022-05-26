@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.productos {
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-size: 10px;
+}

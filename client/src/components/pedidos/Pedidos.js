@@ -35,7 +35,7 @@ export default function Pedidos({ setPedidoId }) {
 			</div>
 			<div>
 				{clienteId ? pedidos.map(pedido => {
-					return (pedido.cliente[0] === clienteId) ? <Pedido marcarEntregado={marcarEntregado} pedido={pedido} key={pedido._id} /> : null;
+					return (pedido.cliente === clienteId) ? <Pedido marcarEntregado={marcarEntregado} pedido={pedido} key={pedido._id} /> : null;
 				}) : null}
 			</div>
 		</>
